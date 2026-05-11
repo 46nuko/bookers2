@@ -1,11 +1,29 @@
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
-
-<%= form_with url: session_path do |form| %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %><br>
-  <%= form.submit "Sign in" %>
-<% end %>
-<br>
-
-<%= link_to "Forgot password?", new_password_path %>
+<main>
+  <p id="notice"></p>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
+        <h2>Log in</h2>
+        <form action="/bookers2/users/sign_in" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="z5nAA-mQwJDY78ClDii9Tc186A7jNHckLMh_ps5ITNCbNYwvdPDmd5sVvmRPFN-7h7vd2ek4JUpW6mTvOzLFyQ" autocomplete="off">
+          <div class="field">
+            <label for="user_name">Name</label><br>
+            <input autofocus="autofocus" class="name" type="text" name="user[name]" id="user_name">
+          </div>
+          <div class="field">
+            <label for="user_password">Password</label><br>
+            <input autocomplete="off" class="password" type="password" name="user[password]" id="user_password">
+          </div>
+          <div class="field">
+            <input name="user[remember_me]" type="hidden" value="0" autocomplete="off"><input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me">
+            <label for="user_remember_me">Remember me</label>
+          </div>
+          <div class="actions">
+            <input type="submit" name="commit" value="Log in" class="btn btn-sm btn-primary" data-disable-with="Log in">
+          </div>
+        </form>      
+        <%= link_to "Sign up", new_user_path %><br>
+        <%= link_to "Forgot your password?", new_password_path %><br>
+      </div>
+    </div>
+  </div>
+</main>
