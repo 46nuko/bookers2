@@ -1,33 +1,40 @@
-<main>
-  <p id="notice"></p>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
-        <h2>Sign up</h2>
-        <form id="new_user" class="new_user" action="/bookers2/users" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="tCEWwu9oJaTxHzuDysuhWwDr9QLl-ctnZJM6y5rYhW2HxcMvmcSSagVbh3QeiXbuAN5qfUs7FOfGYA0cc4HRyQ" autocomplete="off">
-          <div class="field">
-            <label for="user_name">Name</label><br>
-            <input autofocus="autofocus" class="name" type="text" name="user[name]" id="user_name">
-          </div>
-          <div class="field">
-            <label for="user_email">Email</label><br>
-            <input autofocus="autofocus" class="email" type="email" value="" name="user[email]" id="user_email">
-          </div>
-          <div class="field">
-            <label for="user_password">Password</label>
-            <em>(6 characters minimum)</em>
-            <input autocomplete="off" class="password" type="password" name="user[password]" id="user_password">
-          </div>
-        <div class="field">
-          <label for="user_password_confirmation">Password confirmation</label><br>
-          <input autocomplete="off" class="password_confirm" type="password" name="user[password_confirmation]" id="user_password_confirmation">
-        </div>
-        <div class="actions">
-          <input type="submit" name="commit" value="Sign up" class="btn btn-sm btn-success" data-disable-with="Sign up">
-        </div>
-      </form>
-      <%= link_to "Log in", new_session_path %><br>
+<h2>サインアップ</h2>
+
+<%= form_with model: @user, url: users_path do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
     </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, autofocus: true %>
   </div>
+
+  <div class="field">
+    <%= f.label :email_address %><br>
+    <%= f.email_field :email_address %>
   </div>
-      </main>
+
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "サインアップ" %>
+  </div>
+<% end %>
+
+<%= link_to "ログインはこちら", new_session_path %>
