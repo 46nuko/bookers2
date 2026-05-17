@@ -7,8 +7,12 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = Current.user.id
-    @book.save
-    redirect_to books_path
+    if @book.save
+      redirect_to book_path(@book.id)
+    else
+      @books = Book.all
+      render :index, status: :unprocessable_entity
+    end
   end
   
   def show

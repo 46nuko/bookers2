@@ -1,3 +1,11 @@
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>errors prohibited this obj from being saved:
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 <div class="col-md-3">
       <h2>User info</h2>
   <tbody><tr></tr>
@@ -9,7 +17,8 @@
 	  <th>introduction</th>
 	  
   </tr>
-</tbody></table>
+</tbody>
+</table>
 <div class="row">
   <a class="btn btn-outline-secondary btn-block edit_user_1855" href="/bookers2/users/1855/edit">
     <i class="fas fa-user-cog"></i>
