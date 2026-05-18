@@ -10,6 +10,13 @@
 	  <th>introduction</th>
 	  <th><%= @user.introduction %></th>
   </tr>
+  <div class="row">
+  <% if @user == Current.user %>
+    <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block edit_user_#{@user.id}" do %>
+      <i class="fas fa-user-cog"></i>
+    <% end %>
+  <% end %>
+  </div>
 <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
       <table class="table table-hover table-inverse">
