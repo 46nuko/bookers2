@@ -1,22 +1,4 @@
-<div class="col-md-3">
-      <h2>User info</h2>
-      <%= image_tag @user.get_profile_image(100,100) %>
-  <tbody><tr></tr>
-  <tr>
-	  <th>name</th>
-	  <th><%= @user.name %></th>
-  </tr>
-  <tr>
-	  <th>introduction</th>
-	  <th><%= @user.introduction %></th>
-  </tr>
-  <div class="row">
-  <% if @user == Current.user %>
-    <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block edit_user_#{@user.id}" do %>
-      <i class="fas fa-user-cog"></i>
-    <% end %>
-  <% end %>
-  </div>
+<%= render 'books/form', user:@user, book:@book %>
 <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
       <table class="table table-hover table-inverse">
@@ -29,11 +11,13 @@
   </tr>
   </thead>
   <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
+    <% @books.each do |book| %>
+    <tr>
+        <td><%= image_tag book.user.get_profile_image(100,100) %></td>
+        <td><%= book.title %></td>
+        <td><%= book.body %></td>
+    </tr>
+  <% end %>
   </tbody>
 </table>
     </div>
