@@ -2,17 +2,17 @@
       <h2>User info</h2>
       <%= image_tag user.get_profile_image(100,100) %>
   <table class="table">
-  <tbody>
-  <tr></tr>
-  <tr>
-	  <th>name</th>
-	  <th><%= user.name %></th>
-  </tr>
-  <tr>
-	  <th>introduction</th>
-	  <th><%= user.introduction %></th>
-  </tr>
-  </tbody>
+    <tbody>
+    <tr></tr>
+    <tr>
+	    <th>name</th>
+	    <th><%= user.name %></th>
+    </tr>
+    <tr>
+	    <th>introduction</th>
+	    <th><%= user.introduction %></th>
+    </tr>
+    </tbody>
   </table>
   <div class="row">
   <% if user == Current.user %>
@@ -25,11 +25,11 @@
   <%= form_with model: book do |f| %>
     <div class="form-group">
       <label for="book_title">Title</label>
-      <%= f.text_field :title %>
+      <%= f.text_field :title, class:"form-control book_title" %>
     </div>
     <div class="form-group">
       <label for="book_body">Opinion</label>
-      <%= f.text_area :body %>
+      <%= f.text_area :body, class:"form-control book_body" %>
     </div>
     <div class="form-group">
       <input type="submit" name="commit" value="Create Book" class="btn btn-success" data-disable-with="Create Book">
