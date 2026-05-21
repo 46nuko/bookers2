@@ -58,7 +58,7 @@
             </li>
             <li>
               <i class="fa-solid fa-link"></i>
-              <%= link_to "About", about_path, class:"nav-link text-light" %>
+              <%= link_to "About",  home_about_path, class:"nav-link text-light" %>
             </li>
             <li>
               <i class="fa-solid fa-user-plus"></i>
@@ -74,6 +74,7 @@
     </div>
   </nav>
 </header>
+<%= flash[:notice] %>
     <%= yield %>
   <footer>
   <div class="container mt-5">
