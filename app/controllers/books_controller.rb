@@ -22,7 +22,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @new_book = Book.new
-    @user = current_user
+    @user = @book.user
   end
 
   def edit
@@ -33,7 +33,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     if @book.update(book_params)
       flash[:notice] = "You have updated book successfully."
-      redirect_to book_path(book.id)
+      redirect_to book_path(@book)
     else
       render :edit, status: :unprocessable_entity
     end

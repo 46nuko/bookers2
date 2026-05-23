@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   allow_unauthenticated_access only: [:new, :create] 
-  before_action :is_matching_login_user, only: [:edit]
+  before_action :is_matching_login_user, only: [:edit, :update]
   def new
     @user = User.new
   end
@@ -51,8 +51,7 @@ private
    def is_matching_login_user
     user = User.find(params[:id])
     unless user.id == Current.user.id
-      redirect_to user_path(@user)
+      redirect_to user_path(Current.user.id)
     end
-
   end
 end
